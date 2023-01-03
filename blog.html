@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include 'head.html' %}
+</head>
+<body role="document" >
+<div class="col-sm-1" >
+	<div class="navbar navbar-default " role="navigation">
+	<div class="container-fluid" style="padding-left: 0px;padding-right: 0px;width: 60px;">
+		<div class="navbar-header"  style="padding-left: 0px;padding-right: 0px;">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">首页</a>
+		</div>
+		<div class="navbar-collapse collapse" style="padding-left: 0px; padding-right: 0px;">
+			<ul class="nav navbar-nav">
+				<li><a href="/blogs">博客(新闻)</a></li>
+				{%if logged_in[2] == True%}
+				<li><a href="/guanli_students">管理学生</a></li>
+				{%endif%}
+			</ul>
+		</div>
+	</div>
+</div>
+</div>
+<div class="col-sm-11">
+
+		<div class="container theme-showcase"  role="main">
+						<div>
+				<h1 class="hidden-xs"><a href="/"><img src="{{url_for('static', filename='logo.jpg')}}" alt="508 Logo" class="img-rounded" style="width:39px; height:39px;" /></a> 我们八班 - 博客首页</h1>
+				<h1 class="visible-xs">我们八班 - 博客</h1>
+			</div>{% if not logged_in[0]%}
+<ul class="nav nav-pills pull-right" role="tablist">
+									<li role="presentation"><a href="/login">登录</a></li>
+								</ul>
+{% else%}
+<ul class="nav nav-pills pull-right" role="tablist">
+									<li role="presentation"><a href="/users/{{logged_in[1]}}">{{logged_in[1]}}</a></li>
+	<li role="presentation"><a href="/logout/{{logged_in[1]}}">登出</a></li>
+								</ul>
+{% endif%}
+			<hr style="border:1;color:#987cb9;" size="1">
+			<div class="uoj-content">
+				{%if logged_in[0]%}
+<div class="pull-right">
+	<div class="btn-group">
+		<a href="blog/{{logged_in[1]}}/post/new/write" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> 写新博客</a>
+	</div>
+</div>
+{%endif%}
+<h3>博客总览</h3>
+<div class="table-responsive"><table class="table table-hover"><thead>	<tr>
+		<th width="60%">标题</th>
+		<th width="20%">发表者</th>
+	</tr></thead><tbody>
+{% for i in blogs %}
+<tr><td><a href="/blogs/{{i[3]}}">{{i[1]}}
+</a></td><td><span class="username" data-rating="1518">{{i[0]}}</span></td></tr>
+{% endfor %}
+</tbody></table>            </div>
+			</div></div></div></body>
+</html>
