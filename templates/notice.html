@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="UTF-8" />
+		{% include "head.html" %}</head>
+	<body role="document">
+<div class="col-sm-1" >
+	<div class="navbar navbar-default" role="navigation">
+	<div class="container-fluid" style="padding-left: 0px;padding-right: 0px;width: 60px;">
+		<div class="navbar-header"  style="padding-left: 0px;padding-right: 0px;">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">首页</a>
+		</div>
+		<div class="navbar-collapse collapse" style="padding-left: 0px; padding-right: 0px;">
+			<ul class="nav navbar-nav">
+				<li><a href="/blogs">博客(新闻)</a></li>
+				{%if logged_in[2] == True%}
+				<li><a href="/guanli_students">管理学生</a></li>
+				{%endif%}
+			</ul>
+		</div>
+	</div>
+</div></div>
+<div class="col-sm-11">
+		<div class="container theme-showcase"  role="main">
+						<div>
+				{% if not logged_in[0]%}
+<ul class="nav nav-pills pull-right" role="tablist">
+									<li role="presentation"><a href="/login">登录</a></li>
+								</ul>
+{% else%}
+<ul class="nav nav-pills pull-right" role="tablist">
+									<li role="presentation"><a href="/users/{{logged_in[1]}}">{{logged_in[1]}}</a></li>
+	<li role="presentation"><a href="/logout/{{logged_in[1]}}">登出</a></li>
+								</ul>
+{% endif%}
+				<h1 class="hidden-xs"><a href="/"><img src="{{url_for('static', filename='logo.jpg')}}" alt="508 Logo" class="img-rounded" style="width:39px; height:39px;" /></a>
+					{{name}}的公告</h1><hr style="color:#987cb9;" size=1>
+				<h1 class="visible-xs">公告</h1>
+			</div>
+			<div class="uoj-content">
+<h2><a class="header-a" href="/">{{title}}</a></h2>
+<div><strong>By</strong> <span class="508-username" data-rating="0">{{name}}</span></div>
+<div class="panel panel-default">
+	<div class="panel-body">
+				<article>{{message}}
+</article>
+			</div>
+</div>
+
+					</div>
+        </div></div></body>
+</html>
