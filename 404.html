@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'head.html' %}
+</head>
+<body>
+<a href="/"><img src="{{url_for('static', filename='logo.jpg')}}" alt="508 Logo" class="img-rounded" style="width:39px; height:39px;"></a>{% if not logged_in[0] %}
+<ul class="nav nav-pills pull-right" role="tablist">
+									<li role="presentation"><a href="/login">登录</a></li>
+								</ul>
+{% else%}
+<ul class="nav nav-pills pull-right" role="tablist">
+									<li role="presentation"><a href="/users/{{logged_in[1]}}">{{logged_in[1]}}</a></li>
+	<li role="presentation"><a href="/logout/{{logged_in[1]}}">登出</a></li>
+								</ul>
+{% endif%}
+<div class="col-sm-1" >
+	<div class="navbar navbar-default " role="navigation">
+	<div class="container-fluid" style="padding-left: 0px;padding-right: 0px;width: 60px;">
+		<div class="navbar-header"  style="padding-left: 0px;padding-right: 0px;">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">首页</a>
+		</div>
+		<div class="navbar-collapse collapse" style="padding-left: 0px; padding-right: 0px;">
+			<ul class="nav navbar-nav">
+				<li><a href="/blogs">博客(新闻)</a></li>
+				{%if logged_in[2] == True%}
+				<li><a href="/guanli_students">管理学生</a></li>
+				{%endif%}
+			</ul>
+		</div>
+	</div>
+</div>
+</div>
+<div class="col-sm-11">
+
+		<div class="container theme-showcase"  role="main">
+						<div>
+				<h1 class="visible-xs">八班</h1>
+			</div>
+			<hr style="border:1;  color=#987cb9;" size=1><div class="uoj-content">
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-sm-12 col-md-9">
+				<h1 style="text-align:center;">404</h1>
+				<p style="text-align:center;">未找到该页面！</p>
+			</div>
+		</div>
+	</div>
+</div>
+            </div>
+        </div>
+</div>
+</body>
+</html>
